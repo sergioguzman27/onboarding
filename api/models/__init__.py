@@ -6,3 +6,8 @@ from .plan_actividad import PlanActividad
 from .plan_objetivo import PlanObjetivo
 from .plan_recurso import PlanRecurso
 from .plan import Plan
+from .colaborador_actitud import ColaboradorActitud
+from .colaborador_actividad import ColaboradorActividad
+from .colaborador_objetivo import ColaboradorObjetivo
+from .colaborador_onboarding import ColaboradorOnboarding
+from .colaborador_recurso import ColaboradorRecurso
