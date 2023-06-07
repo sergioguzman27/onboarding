@@ -5,3 +5,9 @@ export const resourceTypes = [
     {key: 3, value: 'Accesos'},
     {key: 4, value: 'Uniforme'},
 ]
+
+
+export const levelTypes = [
+    {key: 1, value: 'Skill'},
+    {key: 2, value: 'Will'}
+]

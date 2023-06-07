@@ -25,7 +25,7 @@ const validationSchema = yup.object({
     tipo: yup.mixed('Campo requerido').required('Campo requerido'),
 });
 
-const ResourceList = (props) => {
+const Resources = (props) => {
     const classes = useStyles();
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
@@ -182,5 +182,5 @@ const ResourceList = (props) => {
     )
 }
 
-export default withRouter(ResourceList);
+export default withRouter(Resources);
 
