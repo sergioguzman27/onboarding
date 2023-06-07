@@ -1,0 +1,57 @@
+.Container {
+  width: "100%";
+  height: "100%";
+}
+
+.LayoutLeft {
+  background-color: #2b3c4d;
+  height: 100vh;
+  width: 200px;
+  float: left;
+  position: fixed;
+}
+
+.DivLogo {
+  background-color: #202e3c;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ImgLogo {
+  width: 167px;
+}
+
+.LayoutRightContent {
+  height: 100vh;
+}
+
+.LayoutHeader {
+  background-color: #e5e5e5;
+  height: 70px;
+  border-bottom-width: 2px;
+  border-bottom-color: blue;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  margin-left:0;
+  margin-right: 0;
+  padding-top: 4px;
+  padding-left: 0;
+  text-align:center;
+}
+
+.LayoutContent {
+  padding-left: 210px;
+  padding-right: 10px;
+}
+
+.Titulo {
+  text-align: center;
+  /* padding-top: 5px; */
+}
+
+.DivOptions {
+  padding-top: 10px;
+}
