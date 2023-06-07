@@ -4,7 +4,7 @@ from flask import Flask
 from flask_restful import Api
 from dotenv import load_dotenv
 
-from controllers import TodoController
+import controllers as c
 from db import db
 
 load_dotenv()
@@ -21,7 +21,9 @@ db.init_app(app)
 api = Api(app)
 api.prefix = '/api'
 
-api.add_resource(TodoController, '/todos', '/todos/<int:todo_id>')
+api.add_resource(c.TodoController, '/todos', '/todos/<int:todo_id>')
+api.add_resource(c.RecursoController, '/recurso', '/recurso/<int:id>')
+api.add_resource(c.NivelController, '/nivel', '/nivel/<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

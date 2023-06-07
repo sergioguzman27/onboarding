@@ -1,5 +1,5 @@
 from flask_restful import reqparse, abort, Resource
-from models import Recurso
+from models import *
 
 TODOS = {
     'todo1': {'task': 'build an API'},
