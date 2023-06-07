@@ -102,7 +102,7 @@ const Levels = (props) => {
     }
 
     return (
-        <Layout title="Controles">
+        <Layout title="Niveles de evaluación">
             <Backdrop
                 className={classes.backdrop}
                 open={loading}

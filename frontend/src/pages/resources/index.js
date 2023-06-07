@@ -97,7 +97,7 @@ const Resources = (props) => {
     }
 
     return (
-        <Layout title="Controles">
+        <Layout title="Recursos">
             <Backdrop
                 className={classes.backdrop}
                 open={loading}
