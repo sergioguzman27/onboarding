@@ -7,6 +7,7 @@ from db import db
 plan_model_fields = {
     'id': fields.Integer,
     'puesto': fields.String,
+    'fecha': fields.String,
     'peso_skill': fields.Float,
     'peso_will': fields.Float
 }

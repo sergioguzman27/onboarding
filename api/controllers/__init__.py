@@ -1,4 +1,5 @@
 from .test import TodoController
-from .recurso import RecursoController
-from .nivel import NivelController
+from .resource import ResourceController
+from .level import LevelController
 from .plan import PlanController
+from .employee import EmployeeController

@@ -10,7 +10,7 @@ model_fields = {
     'tipo': fields.Integer
 }
 
-class RecursoController(Resource):
+class ResourceController(Resource):
     
     def get(self, id=None):
         if id:

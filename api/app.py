@@ -25,9 +25,10 @@ api = Api(app)
 api.prefix = '/api'
 
 api.add_resource(c.TodoController, '/todos', '/todos/<int:todo_id>')
-api.add_resource(c.RecursoController, '/resource', '/resource/<int:id>')
-api.add_resource(c.NivelController, '/level', '/level/<int:id>')
+api.add_resource(c.ResourceController, '/resource', '/resource/<int:id>')
+api.add_resource(c.LevelController, '/level', '/level/<int:id>')
 api.add_resource(c.PlanController, '/plan', '/plan/<int:id>')
+api.add_resource(c.EmployeeController, '/employee', '/employee/<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

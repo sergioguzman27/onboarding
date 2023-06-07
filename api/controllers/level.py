@@ -11,7 +11,7 @@ model_fields = {
     'tipo': fields.Integer,
 }
 
-class NivelController(Resource):
+class LevelController(Resource):
     
     def get(self, id=None):
         if id:
