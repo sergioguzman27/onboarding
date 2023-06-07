@@ -14,29 +14,29 @@ class RecursoController(Resource):
     
     def get(self, id=None):
         if id:
-            recurso = Recurso.query.filter_by(id=id).first()
-            return marshal(recurso, model_fields), 200
+            resource = Recurso.query.filter_by(id=id).first()
+            return marshal(resource, model_fields), 200
         else:
             query = Recurso.query.all()
             return [marshal(u, model_fields) for u in query], 200
     
     def post(self):
-        recurso = Recurso(**request.json)
-        db.session.add(recurso)
+        resource = Recurso(**request.json)
+        db.session.add(resource)
         db.session.commit()
         
-        return marshal(recurso, model_fields), 201
+        return marshal(resource, model_fields), 201
     
     def put(self, id=None):
-        recurso = Recurso.query.get(id)
+        resource = Recurso.query.get(id)
         
-        recurso.descripcion = request.json['descripcion']
-        recurso.tipo = request.json['tipo']
+        resource.descripcion = request.json['descripcion']
+        resource.tipo = request.json['tipo']
         db.session.commit()
-        return marshal(recurso, model_fields), 200
+        return marshal(resource, model_fields), 200
     
     def delete(self, id=None):
-        recurso = Recurso.query.get(id)
-        db.session.delete(recurso)
+        resource = Recurso.query.get(id)
+        db.session.delete(resource)
         db.session.commit()
         return None, 204
