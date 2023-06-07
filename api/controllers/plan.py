@@ -16,7 +16,7 @@ activity_model_fields = {'id': fields.Integer, 'id_objetivo': fields.Integer, 'n
 attitude_model_fields = {
     'id': fields.Integer, 'nombre': fields.String, 'descripcion': fields.String, 'peso': fields.Float
 }
-resources_model_fields = {'id': fields.Integer, 'responsable': fields.String}
+resources_model_fields = {'id': fields.Integer, 'id_recurso': fields.Integer, 'responsable': fields.String}
 
 class PlanController(Resource):
     def get(self, id=None):
@@ -30,7 +30,7 @@ class PlanController(Resource):
             response = marshal(obj, plan_model_fields)
             response['objectives'] = [marshal(u, objective_model_fields) for u in objectives]
             response['activities'] = [marshal(u, activity_model_fields) for u in activities]
-            response['attitudes'] = [marshal(u, activity_model_fields) for u in attitudes]
+            response['attitudes'] = [marshal(u, attitude_model_fields) for u in attitudes]
             response['resources'] = [marshal(u, resources_model_fields) for u in resources]
             return response, 200
         else:
