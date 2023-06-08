@@ -115,6 +115,23 @@ const Employees = (props) => {
         setPlan(null);
     }
 
+    const onSubmitAssingPlan = async() => {
+        try {
+            if (plan?.id) {
+                const body = {id_plan: plan.id, id_colaborador: employee.id};
+                const response = await Api.Post('employee-onboarding', body);
+                alert("Plan de onboarding asignado correctamente");
+                closeModal();
+                getEmployees();
+            } else {
+                alert("Seleccione un plan")
+            }
+
+        } catch (e) {
+            alert("Error de servidor")
+        }
+    }
+
     return (
         <Layout title="Colaboradores">
             <Backdrop
@@ -197,7 +214,7 @@ const Employees = (props) => {
                         <Button
                             variant="contained"
                             color="primary"
-                            onClick={() => null}
+                            onClick={onSubmitAssingPlan}
                             fullWidth
                         >
                             Guardar
