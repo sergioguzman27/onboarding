@@ -1,91 +1,84 @@
-# onboarding
-Onboarding
+# Onboarding
 
-```sh
-python app.py # iniciar aplicacion
+[![PyPI version](https://badge.fury.io/py/pandas.svg)](https://badge.fury.io/py/pandas)
+[![npm version](https://badge.fury.io/js/graphql.svg)](https://badge.fury.io/js/graphql)
+
+Este repositorio contiene el backend y frontend para el proyecto de Onboarding en ILU.
+
+## Librerías y dependencias utilizadas
+- [Serverless Framework](https://www.serverless.com/framework/docs) - Framework para integrar arquitecturas Serverless con AWS.
+- [Python 3.9](https://www.python.org/downloads/release/python-390/) - Lenguaje utilizado para el backend.
+- [Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html) - Herramienta utilizada para manejar ambientes virtuales de python e instalar dependencias de python con mayor facilidad, no es necesario tenerlo.
+- [React](https://es.legacy.reactjs.org/docs/getting-started.html) - Librería para frontend.
+- [Material UI](https://v4.mui.com/getting-started/installation/) - Librería para UI.
+
+## Estructura del proyecto
+
+El proyecto tiene la siguiente estructura de carpetas:
+
+```bash
+.
+    ├── .github                 # Carpeta de configuración de CI/CD con Github.
+    ├── api                     # Backend en python.
+    │   ├── controllers         # Carpeta con los controllers de la api
+    │   ├── migrations          # Carpeta con las migraciones hacia la base de datos.
+    │   ├── models              # Modelos
+    │   └── app.py              # Archivo principal donde se configura la api.
+    ├── frontend                # Frontend en React
+    │   ├── public              # Carpeta con los recursos publicos
+    │   ├── src                 # Carpeta con el codigo principal del frontend
+    │   └── package.json        # Archivo de dependencias
+    ├── .gitignore
+    └── README.md
 ```
 
-### Correr migraciones y actualizar base de datos
+## Comandos para levantar el backend
+
 ```sh
 python manage.py db init
 python manage.py db migrate # crear la migracion
 python manage.py db upgrade # ejecutar la ultima migracion en la base de datos
-Start server by running python manage.py runserver #para correr el proyecto
+python app.py               #para correr el proyecto
 ```
-
-### Hacer deploy a la aplicacion
+## Deploy del backend hacia AWS
 ```sh
-npx serverless deploy --aws-profile DA
+npx serverless deploy --aws-profile OB
 ```
 
-# Getting Started with Create React App
+## Comandos para levantar el frontend
+```sh
+npm install
+npm start
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Conductas utilizadas
 
-## Available Scripts
+- Clean Code: Se uso un estandar de carpetas tipo pages, components, controllers y models tanto para el backend como para el frontend con el objetivo de mantener el codigo ordenado. Además del uso de variables correctamente nombradas y entendibles a otro programador.
 
-In the project directory, you can run:
+- Construcción de prototipos: Se realizó un prototipo en Figma [https://www.figma.com/proto/OKP1hNJmpOuiBBq0b6kS7M/Onboarding?type=design&node-id=1-2&scaling=min-zoom&page-id=0%3A1](https://www.figma.com/proto/OKP1hNJmpOuiBBq0b6kS7M/Onboarding?type=design&node-id=1-2&scaling=min-zoom&page-id=0%3A1). 
 
-### `npm start`
+- Patrones de diseño: Al hacer uso de frameworks para backend y frontend. Se usaron patrones de diseño como, singleton para la conexión hacia la base de datos y la instancia de axios en el frontend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Python: El backend está construido en python.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Html, javacript, React: El frontend está construido con estas herramientas.
 
-### `npm test`
+- Serverless: Tanto backend como frontend están 100% serverless con AWS Lambda y S3.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- DevOps: Se implementó CI/CD para realizar despliegues automaticos tanto para el frontend como para el backend. Para el frontend se usó Github Actions y para el backend se uso Serverless Framework.
 
-### `npm run build`
+- Design Thinking: Se aplicó a través de diagramas, ver presentación adjunta en el repositorio.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Self service: Se le dió importancia en la creación de maestros y mantenimientos para estos maestros.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Inglés: Presentación en inglés y código escrito en su mayoría en inlés.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## URL de la aplicación
 
-### `npm run eject`
+- Para la parte del frontend, la aplicación web está alojada en: http://onboarding-sg-ilu.s3-website-us-east-1.amazonaws.com/#/colaboradores
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- La api está alojada en: https://20pkzn9ebg.execute-api.us-east-1.amazonaws.com/dev/api
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
+MIT
