@@ -205,7 +205,7 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ImageUri": "041386476234.dkr.ecr.us-east-1.amazonaws.com/serverless-onboarding-api-dev@sha256:de784dbe985d23df9fdd7234963daede9463c3175d7115c8c29489d2df7f6eb8"
+          "ImageUri": "041386476234.dkr.ecr.us-east-1.amazonaws.com/serverless-onboarding-api-dev@sha256:61d9f142a4e023c42bd3c5b0f38bcb137abe2ff910921b24813070a56118726b"
         },
         "PackageType": "Image",
         "FunctionName": "onboarding-api-dev-app",
@@ -222,14 +222,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionGmMHZU2QMJMHmQ651PgFzNZRf3mxqBcOcR2Eh2rmF4U": {
+    "AppLambdaVersionyfFMHVTDjDhiz9QKY4MaLExWEEzWQYoaZBdNJA9RGE": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "de784dbe985d23df9fdd7234963daede9463c3175d7115c8c29489d2df7f6eb8"
+        "CodeSha256": "61d9f142a4e023c42bd3c5b0f38bcb137abe2ff910921b24813070a56118726b"
       }
     },
     "ApiGatewayRestApi": {
@@ -354,7 +354,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1686194692185": {
+    "ApiGatewayDeployment1686248288334": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -513,7 +513,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/onboarding-api/dev/1686194696625-2023-06-08T03:24:56.625Z/custom-resources.zip"
+          "S3Key": "serverless/onboarding-api/dev/1686248293449-2023-06-08T18:18:13.449Z/custom-resources.zip"
         },
         "FunctionName": "onboarding-api-dev-custom-resource-apigw-cw-role",
         "Handler": "api-gateway-cloud-watch-role/handler.handler",
@@ -534,7 +534,7 @@
     "CWLSubFilterAppLogGroupUsEast1": {
       "Type": "AWS::Logs::SubscriptionFilter",
       "Properties": {
-        "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:73513db4-958a-4f8e-8e3b-a1aab1e10a02#tyYYCPz5XkWWFsBDGw#onboarding-api#dev",
+        "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:73513db4-958a-4f8e-8e3b-a1aab1e10a02#Pg7GM5rFKCDSn38MLz#onboarding-api#dev",
         "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
         "LogGroupName": {
           "Ref": "AppLogGroup"
@@ -544,7 +544,7 @@
     "CWLSubFilterApiGatewayLogGroupUsEast1": {
       "Type": "AWS::Logs::SubscriptionFilter",
       "Properties": {
-        "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:73513db4-958a-4f8e-8e3b-a1aab1e10a02#tyYYCPz5XkWWFsBDGw#onboarding-api#dev",
+        "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:73513db4-958a-4f8e-8e3b-a1aab1e10a02#Pg7GM5rFKCDSn38MLz#onboarding-api#dev",
         "FilterPattern": "\"SLS_ACCESS_LOG\"",
         "LogGroupName": {
           "Ref": "ApiGatewayLogGroup"
@@ -575,7 +575,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionGmMHZU2QMJMHmQ651PgFzNZRf3mxqBcOcR2Eh2rmF4U"
+        "Ref": "AppLambdaVersionyfFMHVTDjDhiz9QKY4MaLExWEEzWQYoaZBdNJA9RGE"
       },
       "Export": {
         "Name": "sls-onboarding-api-dev-AppLambdaFunctionQualifiedArn"
