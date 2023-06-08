@@ -12,6 +12,7 @@ const Home = (props) => (
         <br />
         <Container maxWidth="sm">
             <img src={'./logo.png'} style={{ width: "100%" }} />
+            <Typography>Este es un cambio implementado por CI/CD</Typography>
         </Container>
     </Layout>
 )

@@ -1,0 +1,11 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Api para Onboarding",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npx serverless deploy --aws-profile OB"
+  },
+  "author": "ILU",
+  "license": "ISC"
+}

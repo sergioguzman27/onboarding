@@ -1,5 +1,5 @@
-# org: sguzman
-# app: onboarding-api
+org: sguzman
+app: lambda-backend
 service: onboarding-api
 
 provider:
