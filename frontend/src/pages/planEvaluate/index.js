@@ -102,7 +102,7 @@ const PlanEvaluate = (props) => {
     }
 
     return (
-        <Layout title="Niveles de evaluación">
+        <Layout title="Evaluación Colaborador">
             <Backdrop
                 className={classes.backdrop}
                 open={loading}
