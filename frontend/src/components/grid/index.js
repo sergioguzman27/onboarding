@@ -3,7 +3,7 @@ import 'devextreme/dist/css/dx.light.css';
 import { exportDataGrid } from 'devextreme/excel_exporter';
 import { Workbook } from 'exceljs';
 import saveAs from 'file-saver';
-import { Visibility, Edit, Delete } from '@material-ui/icons';
+import { Visibility, Edit, Delete, Add } from '@material-ui/icons';
 import { Tooltip } from '@material-ui/core';
 import DataGrid, {
   Column,
@@ -41,12 +41,39 @@ const cellAction = (rowInfo, action) => {
         }}>{action.text}</Delete></Tooltip>
     )
 
-  return (
-    <Tooltip title="Ver">
-      <Visibility onClick={() => {
-        action.function(rowInfo.data)
-      }}>{action.text}</Visibility></Tooltip>
-  )
+  if (action.action === 'add' && !rowInfo.data.onboarding)
+    return (
+      <Tooltip title="Agregar">
+        <Add onClick={() => {
+          action.function(rowInfo.data)
+        }}>{action.text}</Add></Tooltip>
+    )
+
+  if (action.action === 'evaluate' && rowInfo.data.onboarding && (!rowInfo.data.onboarding.fecha_evaluacion1 || !rowInfo.data.onboarding.fecha_evaluacion2))
+    return (
+      <Tooltip title="Evaluar">
+        <Edit onClick={() => {
+          action.function(rowInfo.data)
+        }}>{action.text}</Edit></Tooltip>
+    )
+
+  if (action.action === 'report' && rowInfo.data.onboarding && (rowInfo.data.onboarding.fecha_evaluacion1 || rowInfo.data.onboarding.fecha_evaluacion2))
+    return (
+      <Tooltip title="Ver">
+        <Visibility onClick={() => {
+          action.function(rowInfo.data)
+        }}>{action.text}</Visibility></Tooltip>
+    )
+
+  if (action.action === 'detail')
+    return (
+      <Tooltip title="Ver">
+        <Visibility onClick={() => {
+          action.function(rowInfo.data)
+        }}>{action.text}</Visibility></Tooltip>
+    )
+
+  return (<div />)
 }
 
 class TableGrid extends React.Component {
@@ -96,14 +123,14 @@ class TableGrid extends React.Component {
         onContentReady={this.onContentReady}
         autoExpandAll={true}
         columnAutoWidth={this.props.columnAutoWidth || false}
-        style={this.props.columnAutoWidth ? { overflowX: 'auto'} : {}}
+        style={this.props.columnAutoWidth ? { overflowX: 'auto' } : {}}
       >
         {console.log(this.props.excelName)}
         <Export enabled={true} />
         <HeaderFilter visible={true} />
         <GroupPanel visible={true}
           autoExpandAll={true}
-          expandMode="rowClick" 
+          expandMode="rowClick"
           allowCollapsing={false}
         />
         <FilterRow visible={true} />
@@ -146,7 +173,7 @@ class TableGrid extends React.Component {
                 {this.props.actions.map(a => cellAction(info, a))}
               </div>
             )}
-            width={this.props.actionsWidth} />
+              width={this.props.actionsWidth} />
           )
         }
         {
@@ -233,7 +260,7 @@ export class TableGridCustom extends React.Component {
         onContentReady={this.onContentReady}
         onOptionChanged={this.props.onOptionChanged}
         columnAutoWidth={this.props.columnAutoWidth || false}
-        style={this.props.columnAutoWidth ? { overflowX: 'auto'} : {}}
+        style={this.props.columnAutoWidth ? { overflowX: 'auto' } : {}}
         autoExpandAll={true}
       >
         <Export enabled={true} />

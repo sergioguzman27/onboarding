@@ -32,6 +32,7 @@ api.add_resource(c.ResourceController, '/resource', '/resource/<int:id>')
 api.add_resource(c.LevelController, '/level', '/level/<int:id>')
 api.add_resource(c.PlanController, '/plan', '/plan/<int:id>')
 api.add_resource(c.EmployeeController, '/employee', '/employee/<int:id>')
+api.add_resource(c.EmployeeOnboardingController, '/employee-onboarding', '/employee-onboarding/<int:id>')
 
 if __name__ == '__main__':
     app.run(debug=True)

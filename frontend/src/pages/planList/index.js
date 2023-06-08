@@ -58,7 +58,7 @@ const PlanList = (props) => {
                         info={[
                             { dataField: "id", caption: "Id", width: "auto" },
                             { dataField: "puesto", caption: "Puesto" },
-                            // { dataField: "fecha", caption: "Fecha", dataType: "string" },
+                            { dataField: "fecha", caption: "Fecha", dataType: "date" },
                             { dataField: "peso_skill", caption: "Peso Skill" },
                             { dataField: "peso_will", caption: "Peso Will" },
                         ]}

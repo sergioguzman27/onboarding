@@ -6,6 +6,7 @@ import Resources from "./pages/resources";
 import Levels from "./pages/levels";
 import PlanList from "./pages/planList";
 import PlanForm from "./pages/planForm";
+import Employees from "./pages/employees";
 
 const App = (props) => {
 
@@ -19,6 +20,7 @@ const App = (props) => {
                     <Route Route exact path="/niveles" component={Levels} />
                     <Route Route exact path="/planes-listar" component={PlanList} />
                     <Route Route exact path="/plan-crear" component={PlanForm} />
+                    <Route Route exact path="/colaboradores" component={Employees} />
                     <Redirect exact from="/" to="/home" />
                 </Switch>
             </Route>
