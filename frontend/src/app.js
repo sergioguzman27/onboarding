@@ -7,6 +7,7 @@ import Levels from "./pages/levels";
 import PlanList from "./pages/planList";
 import PlanForm from "./pages/planForm";
 import Employees from "./pages/employees";
+import PlanEvaluate from "./pages/planEvaluate";
 
 const App = (props) => {
 
@@ -21,6 +22,7 @@ const App = (props) => {
                     <Route Route exact path="/planes-listar" component={PlanList} />
                     <Route Route exact path="/plan-crear" component={PlanForm} />
                     <Route Route exact path="/colaboradores" component={Employees} />
+                    <Route Route exact path="/evaluar/:id" component={PlanEvaluate} />
                     <Redirect exact from="/" to="/home" />
                 </Switch>
             </Route>

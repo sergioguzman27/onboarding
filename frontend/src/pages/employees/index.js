@@ -53,8 +53,8 @@ const Employees = (props) => {
         getEmployees();
     }, []);
 
-    const navigateForm = (row = null) => {
-        props.history.push('/plan-crear');
+    const navigateTest = (row) => {
+        props.history.push(`/evaluar/${row.id}`);
     }
 
     const onboardingProcessCell = (row) => {
@@ -157,8 +157,8 @@ const Employees = (props) => {
                         ]}
                         actions={[
                             { action: "add", function: assingPlan, text: "Agregar Plan" },
-                            { action: "evaluate", function: assingPlan, text: "Evaluar" },
-                            { action: "report", function: assingPlan, text: "Reporte de evaluación" },
+                            { action: "evaluate", function: navigateTest, text: "Evaluar" },
+                            { action: "report", function: navigateTest, text: "Reporte de evaluación" },
                         ]}
                         actionsWidth='auto'
                     >

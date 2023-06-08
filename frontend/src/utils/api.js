@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const HOST = 'http://127.0.0.1:5000/api/'
-const HOST = 'https://20pkzn9ebg.execute-api.us-east-1.amazonaws.com/dev/api/'
+const HOST = 'http://127.0.0.1:5000/api/'
+// const HOST = 'https://20pkzn9ebg.execute-api.us-east-1.amazonaws.com/dev/api/'
 
 class Api {
     async Get(uri, params = null) {
