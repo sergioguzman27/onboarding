@@ -173,11 +173,57 @@
               }
             }
           },
+          "EnterpriseLogAccessIamRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "AWS": "arn:aws:iam::802587217904:root"
+                    },
+                    "Action": "sts:AssumeRole",
+                    "Condition": {
+                      "StringEquals": {
+                        "sts:ExternalId": "ServerlessEnterprise-73513db4-958a-4f8e-8e3b-a1aab1e10a02"
+                      }
+                    }
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": "LogFilterAccess",
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Action": [
+                          "logs:FilterLogEvents"
+                        ],
+                        "Resource": [
+                          {
+                            "Fn::GetAtt": [
+                              "AppLogGroup",
+                              "Arn"
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
           "AppLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "ImageUri": "041386476234.dkr.ecr.us-east-1.amazonaws.com/serverless-onboarding-api-dev@sha256:72f575c0ea2d6f1cde97ff60d2a3044068d7d5da9190abe7929c7bf66f20877f"
+                "ImageUri": "041386476234.dkr.ecr.us-east-1.amazonaws.com/serverless-onboarding-api-dev@sha256:de784dbe985d23df9fdd7234963daede9463c3175d7115c8c29489d2df7f6eb8"
               },
               "PackageType": "Image",
               "FunctionName": "onboarding-api-dev-app",
@@ -194,14 +240,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionzyoMTwoVnSPuGzMlzcf9WbvZq4EQJvOkL6oSBew18": {
+          "AppLambdaVersionGmMHZU2QMJMHmQ651PgFzNZRf3mxqBcOcR2Eh2rmF4U": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "72f575c0ea2d6f1cde97ff60d2a3044068d7d5da9190abe7929c7bf66f20877f"
+              "CodeSha256": "de784dbe985d23df9fdd7234963daede9463c3175d7115c8c29489d2df7f6eb8"
             }
           },
           "ApiGatewayRestApi": {
@@ -326,7 +372,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1686192473500": {
+          "ApiGatewayDeployment1686194692185": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -375,6 +421,153 @@
                 ]
               }
             }
+          },
+          "ApiGatewayLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/api-gateway/onboarding-api-dev"
+            }
+          },
+          "CustomApiGatewayAccountCloudWatchRole": {
+            "Type": "Custom::ApiGatewayAccountRole",
+            "Version": 1,
+            "Properties": {
+              "ServiceToken": {
+                "Fn::GetAtt": [
+                  "CustomDashresourceDashapigwDashcwDashroleLambdaFunction",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "IamRoleCustomResourcesLambdaExecution": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": [
+                        "lambda.amazonaws.com"
+                      ]
+                    },
+                    "Action": [
+                      "sts:AssumeRole"
+                    ]
+                  }
+                ]
+              },
+              "Policies": [
+                {
+                  "PolicyName": {
+                    "Fn::Join": [
+                      "-",
+                      [
+                        "dev",
+                        "onboarding-api",
+                        "custom-resources-lambda"
+                      ]
+                    ]
+                  },
+                  "PolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Resource": {
+                          "Fn::Join": [
+                            ":",
+                            [
+                              "arn",
+                              {
+                                "Ref": "AWS::Partition"
+                              },
+                              "iam:",
+                              {
+                                "Ref": "AWS::AccountId"
+                              },
+                              "role/*"
+                            ]
+                          ]
+                        },
+                        "Action": [
+                          "iam:AttachRolePolicy",
+                          "iam:CreateRole",
+                          "iam:ListAttachedRolePolicies",
+                          "iam:PassRole"
+                        ]
+                      },
+                      {
+                        "Effect": "Allow",
+                        "Resource": {
+                          "Fn::Join": [
+                            ":",
+                            [
+                              "arn",
+                              {
+                                "Ref": "AWS::Partition"
+                              },
+                              "apigateway:*::/account"
+                            ]
+                          ]
+                        },
+                        "Action": [
+                          "apigateway:GET",
+                          "apigateway:PATCH"
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "CustomDashresourceDashapigwDashcwDashroleLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": {
+                  "Ref": "ServerlessDeploymentBucket"
+                },
+                "S3Key": "serverless/onboarding-api/dev/1686194696625-2023-06-08T03:24:56.625Z/custom-resources.zip"
+              },
+              "FunctionName": "onboarding-api-dev-custom-resource-apigw-cw-role",
+              "Handler": "api-gateway-cloud-watch-role/handler.handler",
+              "MemorySize": 1024,
+              "Runtime": "nodejs16.x",
+              "Timeout": 180,
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleCustomResourcesLambdaExecution",
+                  "Arn"
+                ]
+              }
+            },
+            "DependsOn": [
+              "IamRoleCustomResourcesLambdaExecution"
+            ]
+          },
+          "CWLSubFilterAppLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:73513db4-958a-4f8e-8e3b-a1aab1e10a02#tyYYCPz5XkWWFsBDGw#onboarding-api#dev",
+              "FilterPattern": "?\"REPORT RequestId: \" ?\"SERVERLESS_ENTERPRISE\"",
+              "LogGroupName": {
+                "Ref": "AppLogGroup"
+              }
+            }
+          },
+          "CWLSubFilterApiGatewayLogGroupUsEast1": {
+            "Type": "AWS::Logs::SubscriptionFilter",
+            "Properties": {
+              "DestinationArn": "arn:aws:logs:us-east-1:802587217904:destination:73513db4-958a-4f8e-8e3b-a1aab1e10a02#tyYYCPz5XkWWFsBDGw#onboarding-api#dev",
+              "FilterPattern": "\"SLS_ACCESS_LOG\"",
+              "LogGroupName": {
+                "Ref": "ApiGatewayLogGroup"
+              }
+            }
           }
         },
         "Outputs": {
@@ -386,10 +579,21 @@
               "Name": "sls-onboarding-api-dev-ServerlessDeploymentBucketName"
             }
           },
+          "EnterpriseLogAccessIamRole": {
+            "Value": {
+              "Fn::GetAtt": [
+                "EnterpriseLogAccessIamRole",
+                "Arn"
+              ]
+            },
+            "Export": {
+              "Name": "sls-onboarding-api-dev-EnterpriseLogAccessIamRole"
+            }
+          },
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionzyoMTwoVnSPuGzMlzcf9WbvZq4EQJvOkL6oSBew18"
+              "Ref": "AppLambdaVersionGmMHZU2QMJMHmQ651PgFzNZRf3mxqBcOcR2Eh2rmF4U"
             },
             "Export": {
               "Name": "sls-onboarding-api-dev-AppLambdaFunctionQualifiedArn"
@@ -505,6 +709,11 @@
           }
         }
       },
+      "logs": {
+        "restApi": {
+          "format": "{\"requestTime\":\"$context.requestTime\",\"requestId\":\"$context.requestId\",\"apiId\":\"$context.apiId\",\"resourceId\":\"$context.resourceId\",\"resourcePath\":\"$context.resourcePath\",\"path\":\"$context.path\",\"httpMethod\":\"$context.httpMethod\",\"status\":\"$context.status\",\"authLatency\":\"$context.authorizer.integrationLatency\",\"integrationLatency\":\"$context.integrationLatency\",\"integrationStatus\":\"$context.integrationStatus\",\"responseLatency\":\"$context.responseLatency\",\"responseLength\":\"$context.responseLength\",\"errorMessage\":\"$context.error.message\",\"format\":\"SLS_ACCESS_LOG\",\"version\":\"1.0.0\"}"
+        }
+      },
       "vpc": {}
     },
     "pluginsData": {},
@@ -526,12 +735,14 @@
         "package": {},
         "memory": 1024,
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionzyoMTwoVnSPuGzMlzcf9WbvZq4EQJvOkL6oSBew18"
+        "versionLogicalId": "AppLambdaVersionGmMHZU2QMJMHmQ651PgFzNZRf3mxqBcOcR2Eh2rmF4U"
       }
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
     "initialServerlessConfig": {
+      "org": "sguzman",
+      "app": "onboarding-api",
       "service": "onboarding-api",
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
@@ -540,11 +751,16 @@
         "$ref": "$[\"service\"][\"functions\"]"
       }
     },
+    "app": "onboarding-api",
+    "org": "sguzman",
     "layers": {},
-    "isDashboardMonitoringPreconfigured": false
+    "isDashboardMonitoringPreconfigured": true,
+    "isDashboardAppPreconfigured": true,
+    "orgUid": "73513db4-958a-4f8e-8e3b-a1aab1e10a02",
+    "appUid": "tyYYCPz5XkWWFsBDGw"
   },
   "package": {
-    "artifactDirectoryName": "serverless/onboarding-api/dev/1686192474777-2023-06-08T02:47:54.777Z",
+    "artifactDirectoryName": "serverless/onboarding-api/dev/1686194696625-2023-06-08T03:24:56.625Z",
     "artifact": ""
   }
 }
