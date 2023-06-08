@@ -177,7 +177,7 @@
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
-                "ImageUri": "041386476234.dkr.ecr.us-east-1.amazonaws.com/serverless-onboarding-api-dev@sha256:1a9c1d64f91ce2b2f87c6b2cc1588368be7cfc59374d7c3fdf2384d871028618"
+                "ImageUri": "041386476234.dkr.ecr.us-east-1.amazonaws.com/serverless-onboarding-api-dev@sha256:72f575c0ea2d6f1cde97ff60d2a3044068d7d5da9190abe7929c7bf66f20877f"
               },
               "PackageType": "Image",
               "FunctionName": "onboarding-api-dev-app",
@@ -194,14 +194,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersiona9EhVMlz4LaSyYkFieA8DPggIgroCTtrp4tsbYH1Qc": {
+          "AppLambdaVersionzyoMTwoVnSPuGzMlzcf9WbvZq4EQJvOkL6oSBew18": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "1a9c1d64f91ce2b2f87c6b2cc1588368be7cfc59374d7c3fdf2384d871028618"
+              "CodeSha256": "72f575c0ea2d6f1cde97ff60d2a3044068d7d5da9190abe7929c7bf66f20877f"
             }
           },
           "ApiGatewayRestApi": {
@@ -326,7 +326,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1686085558576": {
+          "ApiGatewayDeployment1686192473500": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -389,7 +389,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersiona9EhVMlz4LaSyYkFieA8DPggIgroCTtrp4tsbYH1Qc"
+              "Ref": "AppLambdaVersionzyoMTwoVnSPuGzMlzcf9WbvZq4EQJvOkL6oSBew18"
             },
             "Export": {
               "Name": "sls-onboarding-api-dev-AppLambdaFunctionQualifiedArn"
@@ -526,7 +526,7 @@
         "package": {},
         "memory": 1024,
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersiona9EhVMlz4LaSyYkFieA8DPggIgroCTtrp4tsbYH1Qc"
+        "versionLogicalId": "AppLambdaVersionzyoMTwoVnSPuGzMlzcf9WbvZq4EQJvOkL6oSBew18"
       }
     },
     "configValidationMode": "warn",
@@ -544,7 +544,7 @@
     "isDashboardMonitoringPreconfigured": false
   },
   "package": {
-    "artifactDirectoryName": "serverless/onboarding-api/dev/1686085559498-2023-06-06T21:05:59.498Z",
+    "artifactDirectoryName": "serverless/onboarding-api/dev/1686192474777-2023-06-08T02:47:54.777Z",
     "artifact": ""
   }
 }

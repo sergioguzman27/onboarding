@@ -13,6 +13,11 @@ python manage.py db upgrade # ejecutar la ultima migracion en la base de datos
 Start server by running python manage.py runserver #para correr el proyecto
 ```
 
+### Hacer deploy a la aplicacion
+```sh
+npx serverless deploy --aws-profile DA
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
